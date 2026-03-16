@@ -270,6 +270,7 @@
       font-weight: 500;
       margin-bottom: 6px;
       font-size: 13px;
+      color: #647185;
     }
 
     .form-input,
@@ -1469,11 +1470,17 @@
 
     function checkStartReady() {
       const role = document.querySelector('input[name="role"]:checked');
+      const freq = document.querySelector('input[name="freq"]:checked');
+      const ai = document.querySelector('input[name="ai"]:checked');
       const btn = document.getElementById('startBtn');
       const hint = document.getElementById('startHint');
       if (role && btn) {
         btn.disabled = false;
         if (hint) hint.style.display = 'none';
+      }
+      // Auto-advance when all 3 radio groups are filled
+      if (role && freq && ai) {
+        setTimeout(() => goToInstructions(), 400);
       }
     }
 
